@@ -1,36 +1,43 @@
 ﻿using Clover_Donuts_FE.Server.DataBase;
 using Clover_Donuts_FE.Server.Entities;
 using Clover_Donuts_FE.Server.Repositories.Contracts;
+using Microsoft.EntityFrameworkCore;
 
 namespace Clover_Donuts_FE.Server.Repositories
 {
     public class ProductRepository : IProductRepository
     {
-        private readonly CloverDonutsDbContext _cloverDonutsDbContext;
+        private readonly CloverDonutsDbContext cloverDonutsDbContext;
         
         // db context constructor
         public ProductRepository(CloverDonutsDbContext cloverDonutsDbContext)
         {
-            _cloverDonutsDbContext = cloverDonutsDbContext;
+            this.cloverDonutsDbContext = cloverDonutsDbContext;
         }
-        public Task<IEnumerable<ProductCategory>> GetCategories()
+        public async Task<IEnumerable<ProductCategory>> GetCategories()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<ProductCategory> GetCategory(int id)
-        {
-            throw new NotImplementedException();
+            var categories = await this.cloverDonutsDbContext.ProductCategories.ToListAsync();
+            return categories;
         }
 
-        public Task<Product> GetItem(int id)
+        public async Task<ProductCategory> GetCategory(int id)
         {
-            throw new NotImplementedException();
+            var category = await this.cloverDonutsDbContext.ProductCategories.Where(catId=>catId.Id == id).FirstOrDefaultAsync();
+
+            return category;
         }
 
-        public Task<IEnumerable<Product>> GetItems()
+        public async Task<Product> GetItem(int id)
         {
-            throw new NotImplementedException();
+            var item = await this.cloverDonutsDbContext.Products.Where(itemId => itemId.Id == id).FirstOrDefaultAsync();
+
+            return item;
+        }
+
+        public async Task<IEnumerable<Product>> GetItems()
+        {
+            var products = await this.cloverDonutsDbContext.Products.ToListAsync();
+            return products;
         }
     }
 }
