@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\CloverDonuts.Models\CloverDonuts.Models.csproj" />
     <ProjectReference Include="..\Client\Clover_Donuts_FE.Client.csproj" />
     <ProjectReference Include="..\Shared\Clover_Donuts_FE.Shared.csproj" />
   </ItemGroup>

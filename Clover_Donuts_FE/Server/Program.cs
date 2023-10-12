@@ -1,4 +1,6 @@
 using Clover_Donuts_FE.Server.DataBase;
+using Clover_Donuts_FE.Server.Repositories;
+using Clover_Donuts_FE.Server.Repositories.Contracts;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,6 +13,8 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
 builder.Services.AddDbContext<CloverDonutsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CDConnectionString")));
+
+builder.Services.AddScoped<IProductRepository,ProductRepository>();
 
 var app = builder.Build();
 

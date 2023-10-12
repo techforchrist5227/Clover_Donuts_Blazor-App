@@ -1,6 +1,7 @@
 ﻿using Clover_Donuts_FE.Server.DataBase;
 using Clover_Donuts_FE.Server.Entities;
 using Clover_Donuts_FE.Server.Repositories.Contracts;
+using CloverDonuts.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,10 +26,21 @@ namespace Clover_Donuts_FE.Server.Controllers
 
 
         [HttpGet]
-        public async Task<IEnumerable<Product>> GetItems()
+        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
             {
             var products = await _cloverDonutsDbContext.Products.ToListAsync();
             return Ok(products);
+
+        }
+
+
+        [HttpGet("id")]
+
+        public async Task<ActionResult<ProductDTO>> GetItem(int id)
+        {
+            var item = await _cloverDonutsDbContext.Products.Where(itemId => itemId .Id == id).FirstOrDefaultAsync();
+
+            return Ok(item);
         }
     }
 }

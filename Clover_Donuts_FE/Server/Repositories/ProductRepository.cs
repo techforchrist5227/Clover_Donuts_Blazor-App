@@ -34,12 +34,17 @@ namespace Clover_Donuts_FE.Server.Repositories
             var item = await this.cloverDonutsDbContext.Products.Where(itemId => itemId.Id == id).FirstOrDefaultAsync();
 
             return item;
+
+            
         }
 
         public async Task<IEnumerable<Product>> GetItems()
         {
             var products = await this.cloverDonutsDbContext.Products.ToListAsync();
+
             return products;
+
+           
         }
     }
 }
