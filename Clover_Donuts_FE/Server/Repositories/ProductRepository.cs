@@ -2,6 +2,7 @@
 using Clover_Donuts_FE.Server.Entities;
 using Clover_Donuts_FE.Server.Repositories.Contracts;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Clover_Donuts_FE.Server.Repositories
 {
@@ -22,6 +23,7 @@ namespace Clover_Donuts_FE.Server.Repositories
 
         public async Task<ProductCategory> GetCategory(int id)
         {
+            //"Where" is used to filter productcategories dbset based on the ID
             var category = await this.cloverDonutsDbContext.ProductCategories.Where(catId=>catId.Id == id).FirstOrDefaultAsync();
 
             return category;
