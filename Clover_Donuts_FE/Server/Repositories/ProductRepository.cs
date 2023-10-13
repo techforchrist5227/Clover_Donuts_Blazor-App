@@ -15,10 +15,10 @@ namespace Clover_Donuts_FE.Server.Repositories
         {
             this.cloverDonutsDbContext = cloverDonutsDbContext;
         }
-        public async Task<IEnumerable<ProductCategory>> GetCategories()
+        public async Task<IEnumerable<ProductCategories>> GetCategories()
         {
             var categories = await this.cloverDonutsDbContext.ProductCategories.ToListAsync();
-            return categories;
+            return (IEnumerable<ProductCategories>)categories;
         }
 
         public async Task<ProductCategory> GetCategory(int id)
@@ -40,8 +40,8 @@ namespace Clover_Donuts_FE.Server.Repositories
 
         public async Task<IEnumerable<Product>> GetItems()
         {
-            var products = await this.cloverDonutsDbContext.Products.ToListAsync();
-
+            //var products = await this.cloverDonutsDbContext.Products.ToListAsync();
+            var products = await this.cloverDonutsDbContext.Products.Include(cat => cat.ProductCategories).ToListAsync();
             return products;
 
            

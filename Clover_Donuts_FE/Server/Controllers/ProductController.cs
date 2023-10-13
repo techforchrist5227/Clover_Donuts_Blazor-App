@@ -25,16 +25,62 @@ namespace Clover_Donuts_FE.Server.Controllers
 
 
 
+        /* [HttpGet]
+         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
+             {//ActionResult will allow status codes like "Ok" 
+
+
+              try
+              {
+                  var products = await _cloverDonutsDbContext.Products.ToListAsync();
+                  var productCategories = await _cloverDonutsDbContext.ProductCategories.GetCategories();
+
+
+                  if(products == null)
+                  {
+                      return BadRequest("Products not found");
+                  }
+
+                  return Ok(products && productCategories);
+              }
+              catch (Exception)
+              {
+
+                  return StatusCode(StatusCodes.Status500InternalServerError,
+                                  "Error retrieving data from the database");
+
+              }
+
+          }*/
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
+            public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
             {
-            var products = await _cloverDonutsDbContext.Products.ToListAsync();
-            return Ok(products);
+                try
+                {
+                    var products = await _cloverDonutsDbContext.Products.ToListAsync();
+                    var productCategories = await _cloverDonutsDbContext.ProductCategories.ToListAsync();
 
-        }
+                    if (products == null || productCategories == null)
+                    {
+                        return NotFound("Products or Product Categories not found");
+                    }
+
+                    var result = new
+                    {
+                        Products = products,
+                        ProductCategories = productCategories
+                    };
+
+                    return Ok(result);
+                }
+                catch (Exception)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                }
+            }
 
 
-        [HttpGet("id")]
+            [HttpGet("{id:int}")]
 
         public async Task<ActionResult<ProductDTO>> GetItem(int id)
         {

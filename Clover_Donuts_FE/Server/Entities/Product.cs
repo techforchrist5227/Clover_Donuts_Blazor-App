@@ -1,4 +1,6 @@
-﻿namespace Clover_Donuts_FE.Server.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Clover_Donuts_FE.Server.Entities
 {
     //one to many relationship with the shopping cart
     public class Product
@@ -18,5 +20,8 @@
 
         public int CategoryId { get; set; }
 
+
+        [ForeignKey("CategoryId")]
+        public ProductCategory ProductCategories { get; set; } = new ProductCategory();
     }
 }
