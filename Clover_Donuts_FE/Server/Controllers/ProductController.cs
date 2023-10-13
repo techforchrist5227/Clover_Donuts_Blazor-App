@@ -25,33 +25,7 @@ namespace Clover_Donuts_FE.Server.Controllers
 
 
 
-        /* [HttpGet]
-         public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
-             {//ActionResult will allow status codes like "Ok" 
-
-
-              try
-              {
-                  var products = await _cloverDonutsDbContext.Products.ToListAsync();
-                  var productCategories = await _cloverDonutsDbContext.ProductCategories.GetCategories();
-
-
-                  if(products == null)
-                  {
-                      return BadRequest("Products not found");
-                  }
-
-                  return Ok(products && productCategories);
-              }
-              catch (Exception)
-              {
-
-                  return StatusCode(StatusCodes.Status500InternalServerError,
-                                  "Error retrieving data from the database");
-
-              }
-
-          }*/
+        
         [HttpGet]
             public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
             {
