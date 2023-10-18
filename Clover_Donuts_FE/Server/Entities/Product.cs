@@ -21,7 +21,6 @@ namespace Clover_Donuts_FE.Server.Entities
         public int CategoryId { get; set; }
 
 
-        [ForeignKey("CategoryId")]
-        public ProductCategory ProductCategories { get; set; } = new ProductCategory();
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }

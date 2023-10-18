@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MudBlazor" Version="6.1.0" />
+    <PackageReference Include="MudBlazor.ThemeManager" Version="1.0.5" />
+  </ItemGroup>
+
 </Project>

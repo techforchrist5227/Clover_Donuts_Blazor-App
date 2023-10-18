@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Clover_Donuts_FE.Server.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] 
     public class ProductController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
@@ -25,33 +25,33 @@ namespace Clover_Donuts_FE.Server.Controllers
 
 
 
-        
+        [Route("/products")]
         [HttpGet]
             public async Task<ActionResult<IEnumerable<ProductDTO>>> GetItems()
             {
-                try
+            var products = await _productRepository.GetItems();
+
+
+            
+
+            try
+            {
+                if (products != null)
                 {
-                    var products = await _cloverDonutsDbContext.Products.ToListAsync();
-                    var productCategories = await _cloverDonutsDbContext.ProductCategories.ToListAsync();
-
-                    if (products == null || productCategories == null)
-                    {
-                        return NotFound("Products or Product Categories not found");
-                    }
-
-                    var result = new
-                    {
-                        Products = products,
-                        ProductCategories = productCategories
-                    };
-
-                    return Ok(result);
+                    return Ok(products);
                 }
-                catch (Exception)
+                else
                 {
-                    return StatusCode(StatusCodes.Status500InternalServerError, "Error retrieving data from the database");
+                    return NotFound("Products not found");
                 }
             }
+            catch (Exception)
+            {
+
+               return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+        }
 
 
             [HttpGet("{id:int}")]

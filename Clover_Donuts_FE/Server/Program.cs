@@ -1,27 +1,46 @@
 using Clover_Donuts_FE.Server.DataBase;
 using Clover_Donuts_FE.Server.Repositories;
 using Clover_Donuts_FE.Server.Repositories.Contracts;
+using FluentAssertions.Common;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Swagger;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.AddAuthentication();
+builder.Services.AddHttpClient();
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 
-builder.Services.AddDbContext<CloverDonutsDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("CDConnectionString")));
+builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddScoped<IProductRepository,ProductRepository>();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AddDbContext<CloverDonutsDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CDConnectionString"));
+}
+);
+
+builder.Services.AddTransient<IProductRepository,ProductRepository>();
 
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.UseSwagger();
+    app.UseSwaggerUI();
     app.UseWebAssemblyDebugging();
+   
 }
 else
 {

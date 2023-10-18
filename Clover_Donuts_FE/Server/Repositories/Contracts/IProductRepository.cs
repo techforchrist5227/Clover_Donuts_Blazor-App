@@ -10,10 +10,13 @@ namespace Clover_Donuts_FE.Server.Repositories.Contracts
     { // These are going to run asynchronously so we are going to use Task<IEnumerable>
         Task<IEnumerable<Product>> GetItems();
 
-        Task<IEnumerable<ProductCategories>> GetCategories();
         //Gets a single Item by Id
         Task<Product> GetItem(int id);
+        
+        Task<IEnumerable<ProductCategories>> GetCategories();
 
+
+        //Gets a single Category by Id
         Task<ProductCategory> GetCategory(int id);
 
 

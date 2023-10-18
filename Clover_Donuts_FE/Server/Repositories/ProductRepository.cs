@@ -41,7 +41,7 @@ namespace Clover_Donuts_FE.Server.Repositories
         public async Task<IEnumerable<Product>> GetItems()
         {
             //var products = await this.cloverDonutsDbContext.Products.ToListAsync();
-            var products = await this.cloverDonutsDbContext.Products.Include(cat => cat.ProductCategories).ToListAsync();
+            var products = await this.cloverDonutsDbContext.Products.ToListAsync();
             return products;
 
            

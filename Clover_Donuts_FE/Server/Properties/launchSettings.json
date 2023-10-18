@@ -12,6 +12,7 @@
         "commandName": "Project",
         "dotnetRunMessages": true,
         "launchBrowser": true,
+        "lauchUrl": "swagger",
         "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
         "applicationUrl": "http://localhost:5063",
         "environmentVariables": {
@@ -21,6 +22,7 @@
       "https": {
         "commandName": "Project",
         "dotnetRunMessages": true,
+        "lauchUrl": "swagger",
         "launchBrowser": true,
         "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
         "applicationUrl": "https://localhost:7218;http://localhost:5063",
