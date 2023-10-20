@@ -1,0 +1,20 @@
+﻿@page "/menu"
+@using CloverDonuts.Models.DTO;
+@using Clover_Donuts_FE.Client.Services;
+@using Clover_Donuts_FE.Client.Services.Contracts;
+@inject HttpClient HttpClient
+@inherits MenuBase 
+
+<h1> Menu </h1>
+
+@if(Products == null)
+{
+    <MudProgressCircular Color="Color.Secondary" Indeterminate="true" />
+}
+else
+{ var products = new List<ProductDTO>();
+    @foreach(product in products)
+    {
+        
+    }
+}
