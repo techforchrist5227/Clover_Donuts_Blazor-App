@@ -22,7 +22,7 @@ namespace Clover_Donuts_FE.Server.DataBase
                 Id = 1,
                 Name = "Glazed Donut",
                 Description = "A sweet and fluffy Donut made from scratch in store. ",
-                ImageUrl = "picture/Donuts/glazedurl",
+                ImageUrl = "Clover_Donuts_FE/Clover_Donuts_FE/Client/wwwroot/Images/glazed_donut.png",
                 Price = 1,
                 Quantity = 50,
                 CategoryId = 1
@@ -33,7 +33,7 @@ namespace Clover_Donuts_FE.Server.DataBase
                 Id = 2,
                 Name = "Chocolate Donut",
                 Description = "A chocolate Donut made from scratch in store. ",
-                ImageUrl = "picture/Donuts/chocolateurl",
+                ImageUrl = "Clover_Donuts_FE/Clover_Donuts_FE/Client/wwwroot/Images/chocolate_donut.png",
                 Price = 1,
                 Quantity = 50,
                 CategoryId = 2

@@ -6,8 +6,10 @@ namespace Clover_Donuts_FE.Client.Pages
 {
     public class MenuBase : ComponentBase
     {
+        //using the IProductService function "GetItems()" to obtain the items from the DB
         [Inject]
-        public IProductService ProductService { get; set; }
+        public IProductService? ProductService { get; set; }
+        
 
         public IEnumerable<ProductDTO> Products { get; set; }
 
